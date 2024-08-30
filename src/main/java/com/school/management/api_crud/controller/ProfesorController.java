@@ -44,7 +44,7 @@ public class ProfesorController {
 	
 	
 	//Post
-	@PostMapping("/{id}")
+	@PostMapping
 	public Profesor createProfesor (@RequestBody Profesor profesor) {
 		return profesorService.crearProfesor(profesor);
 	}

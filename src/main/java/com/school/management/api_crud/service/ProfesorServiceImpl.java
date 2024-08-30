@@ -48,7 +48,6 @@ public class ProfesorServiceImpl implements ProfesorService {
 		if(profesorExistente.isPresent()) {
 			Profesor modificarProfesor = profesorExistente.get();
 			modificarProfesor.setNombre(profesor.getNombre());
-			modificarProfesor.setMateria(profesor.getMateria());
 		}else {
 			return null;
 		}
@@ -58,7 +57,9 @@ public class ProfesorServiceImpl implements ProfesorService {
 	//Metodo para borrar un profesor
 	@Override
 	public void borrarProfesor(Long id) {
-		profesorRepository.delete(id);
+		profesorRepository.deleteById(id);
 	}
+
+	
 	
 }

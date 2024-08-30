@@ -10,8 +10,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
-@Entity
+
 @Data
+@Entity
 public class Alumno {
 	
 	@Id

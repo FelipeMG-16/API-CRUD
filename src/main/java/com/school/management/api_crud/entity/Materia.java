@@ -10,8 +10,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
-@Entity
+
 @Data
+@Entity
 public class Materia {
 	
 	@Id

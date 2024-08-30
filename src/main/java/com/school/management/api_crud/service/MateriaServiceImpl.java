@@ -6,22 +6,32 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.school.management.api_crud.entity.Alumno;
 import com.school.management.api_crud.entity.Materia;
+import com.school.management.api_crud.entity.Profesor;
+import com.school.management.api_crud.repository.AlumnoRepository;
 import com.school.management.api_crud.repository.MateriaRepository;
+import com.school.management.api_crud.repository.ProfesorRepository;
 
 @Service
 public class MateriaServiceImpl implements MateriaService{
 	
 	
-	//Instancia de MateriaRepository
+	//Instancias
 	private final MateriaRepository materiaRepository;
+	private final AlumnoRepository alumnoRepository;
+	private final ProfesorRepository profesorRepository;
 	
 	
 	//Inyeccion de instancia de MateriaRepository en el constructor de MateriaServiceImpl
 	@Autowired
-	public MateriaServiceImpl(MateriaRepository materiaRepository) {
+	public MateriaServiceImpl(MateriaRepository materiaRepository, AlumnoRepository alumnoRepository, ProfesorRepository profesorRepository) {
 		this.materiaRepository = materiaRepository;
+		this.alumnoRepository = alumnoRepository;
+		this.profesorRepository = profesorRepository;
 	}
+	
+	
 	
 	//Metodo para obtener todas las materias
 	@Override
@@ -40,7 +50,18 @@ public class MateriaServiceImpl implements MateriaService{
 	//Metodo para crear una materia
 	@Override
 	public Materia crearMateria(Materia materia) {
+		//Buscamos Alumno y Profesor por Id
+		Alumno alumno = alumnoRepository.findById(materia.getAlumno().getId())
+                .orElseThrow();
+		Profesor profesor = profesorRepository.findById(materia.getProfesor().getId())
+				.orElseThrow();
+		
+		//Asignamos las entidades encontradas en la materia
+		materia.setAlumno(alumno);
+		materia.setProfesor(profesor);
+		
 		return materiaRepository.save(materia);
+		
 	}
 	
 	
@@ -63,8 +84,9 @@ public class MateriaServiceImpl implements MateriaService{
 	//Metodo para borrar una materia
 	@Override
 	public void borrarMateria(Long id) {
-		materiaRepository.delete(id);
+		materiaRepository.deleteById(id);
 	}
 
+	
 
 }

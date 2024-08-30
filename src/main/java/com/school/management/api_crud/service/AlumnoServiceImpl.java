@@ -62,8 +62,9 @@ public class AlumnoServiceImpl implements AlumnoService{
 	//Metodo para borrar un alumno
 	@Override
 	public void borrarAlumno(Long id) {
-		alumnoRepository.delete(id);
+		alumnoRepository.deleteById(id);
 		
 	}
+
 
 }
