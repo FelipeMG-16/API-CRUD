@@ -1,5 +1,7 @@
 package com.school.management.api_crud.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Materia {
 	
 	@ManyToOne
 	@JoinColumn(name= "alumno_id")
+	@JsonBackReference
 	private Alumno alumno;
 	
 	@OneToOne(cascade = CascadeType.ALL)

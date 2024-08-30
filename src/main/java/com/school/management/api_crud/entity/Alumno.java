@@ -2,6 +2,8 @@ package com.school.management.api_crud.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,7 @@ public class Alumno {
 	private String nombre;
 	
 	@OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private List<Materia> materias;
 	
 }
