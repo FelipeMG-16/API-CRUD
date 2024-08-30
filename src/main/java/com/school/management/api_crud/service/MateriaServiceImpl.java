@@ -49,20 +49,26 @@ public class MateriaServiceImpl implements MateriaService{
 	
 	//Metodo para crear una materia
 	@Override
-	public Materia crearMateria(Materia materia) {
-		//Buscamos Alumno y Profesor por Id
-		Alumno alumno = alumnoRepository.findById(materia.getAlumno().getId())
-                .orElseThrow();
-		Profesor profesor = profesorRepository.findById(materia.getProfesor().getId())
-				.orElseThrow();
-		
-		//Asignamos las entidades encontradas en la materia
-		materia.setAlumno(alumno);
-		materia.setProfesor(profesor);
-		
-		return materiaRepository.save(materia);
-		
-	}
+    public Materia crearMateria(Materia materia) {
+        try {
+            // Verificar y asignar Alumno si existe
+            if (materia.getAlumno() != null && materia.getAlumno().getId() != null) {
+                Alumno existingAlumno = alumnoRepository.findById(materia.getAlumno().getId())
+                        .orElseThrow();
+                materia.setAlumno(existingAlumno);
+            }
+
+            // Verificar y asignar Profesor si existe
+            if (materia.getProfesor() != null && materia.getProfesor().getId() != null) {
+                Profesor existingProfesor = profesorRepository.findById(materia.getProfesor().getId())
+                        .orElseThrow();
+                materia.setProfesor(existingProfesor);
+            }
+
+            return materiaRepository.save(materia);
+        } finally {
+    }
+}
 	
 	
 	//Metodo para actualizar una materia

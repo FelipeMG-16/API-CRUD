@@ -29,7 +29,7 @@ public class Materia {
 	private Alumno alumno;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="profesor_id", referencedColumnName = "id")
+	@JoinColumn(name="profesor_id")
 	private Profesor profesor;
 
 }

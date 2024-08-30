@@ -61,4 +61,6 @@ public class AlumnoController {
 	public void deleteAlumno(@PathVariable Long id) {
 		alumnoService.borrarAlumno(id);
 	}
+	
+
 }
