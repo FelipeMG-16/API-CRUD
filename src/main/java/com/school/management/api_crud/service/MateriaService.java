@@ -8,7 +8,7 @@ import com.school.management.api_crud.entity.Materia;
 //Se implementan interfaces en la capa servicios para aplicar polimorfismo
 public interface MateriaService {
 	
-		List<Materia> obtenerAlumnos();
+		List<Materia> obtenerMaterias();
 		Materia obtenerMateriaPorId(Long id);
 		Materia crearMateria(Materia materia);
 		Materia modificarMateria(Long id, Materia materia);
